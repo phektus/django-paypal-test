@@ -15,9 +15,9 @@ def subscribe(request):
         "amount": "1.00",
         "item_name": "test payment",
         "invoice": invoice_id,
-        "notify_url": "http://localhost:8000/payment/ipnsecret234299394",
-        "return_url": "http://localhost:8000/payment/paypal_return",
-        "cancel_return": "http://localhost:8000/payment/paypal_cancel",
+        "notify_url": "http://208.166.58.236/payment/ipnsecret234299394/",
+        "return_url": "http://208.166.58.236/payment/paypal_return/",
+        "cancel_return": "http://208.166.58.236/payment/paypal_cancel/",
     }
 
     # Create the instance.
