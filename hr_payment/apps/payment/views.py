@@ -1,5 +1,6 @@
 from django.template import Context, RequestContext, loader
 from django.http import HttpResponse
+from django.views.decorators.csrf import csrf_exempt
 
 from paypal.standard.forms import PayPalPaymentsForm
 
@@ -11,12 +12,12 @@ def subscribe(request):
     
     paypal_dict = {
         "business": "arbie@sportix.fr",
-        "amount": "100.00",
+        "amount": "1.00",
         "item_name": "test payment",
         "invoice": invoice_id,
-        "notify_url": "http://www.example.com/your-ipn-location/",
-        "return_url": "http://www.example.com/your-return-location/",
-        "cancel_return": "http://www.example.com/your-cancel-location/",
+        "notify_url": "http://localhost:8000/payment/ipnsecret234299394",
+        "return_url": "http://localhost:8000/payment/paypal_return",
+        "cancel_return": "http://localhost:8000/payment/paypal_cancel",
     }
 
     # Create the instance.
@@ -28,14 +29,14 @@ def subscribe(request):
     })    
     return HttpResponse(t.render(c))
 
-
+@csrf_exempt
 def paypal_return(request):
     t = loader.get_template('payment/return.html')    
     c = RequestContext(request, {})
 
     return HttpResponse(t.render(c))
 
-
+@csrf_exempt
 def paypal_cancel(request):
     t = loader.get_template('payment/cancel.html')    
     c = RequestContext(request, {})
