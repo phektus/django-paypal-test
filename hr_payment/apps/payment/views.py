@@ -3,13 +3,17 @@ from django.http import HttpResponse
 
 from paypal.standard.forms import PayPalPaymentsForm
 
+import random, string
+
 def subscribe(request):
     # What you want the button to do.
+    invoice_id = ''.join(random.choice(string.letters+'1234567890') for i in xrange(9))    
+    
     paypal_dict = {
         "business": "arbie@sportix.fr",
         "amount": "100.00",
-        "item_name": "name of the item",
-        "invoice": "unique-invoice-id",
+        "item_name": "test payment",
+        "invoice": invoice_id,
         "notify_url": "http://www.example.com/your-ipn-location/",
         "return_url": "http://www.example.com/your-return-location/",
         "cancel_return": "http://www.example.com/your-cancel-location/",
