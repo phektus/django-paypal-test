@@ -1,0 +1,7 @@
+*~
+*.pyc
+docs/_build/*
+uploads
+hr_payment/conf/local/*.py
+dev.db
+hr_payment.egg-info
